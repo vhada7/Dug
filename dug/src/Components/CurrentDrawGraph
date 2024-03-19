@@ -1,0 +1,42 @@
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js';
+
+const CurrentDrawGraph = () => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const myChartRef = chartRef.current.getContext('2d');
+
+    new Chart(myChartRef, {
+      type: 'line',
+      data: {
+        // TODO: Update this with your actual data
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        datasets: [{
+          label: "Sales",
+          data: [86, 114, 106, 106, 107, 111, 133],
+          fill: false,
+          borderColor: "red"
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  }, []);
+
+  return (
+    <canvas
+      id="myChart"
+      ref={chartRef}
+    />
+  );
+}
+
+export default CurrentDrawGraph;
